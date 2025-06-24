@@ -1,1 +1,37 @@
+{{ header }}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>{{ heading_title }}</h1>
+      <form action="{{ action }}" method="post">
+        <div class="form-group">
+          <label for="input-status">{{ entry_status }}</label>
+          <select name="shipping_addressdelivery_status" id="input-status" class="form-control">
+            <option value="1" {{ shipping_addressdelivery_status ? 'selected' }}>Включено</option>
+            <option value="0" {{ not shipping_addressdelivery_status ? 'selected' }}>Отключено</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="input-cost">{{ entry_cost }}</label>
+          <input type="text" name="shipping_addressdelivery_cost" value="{{ shipping_addressdelivery_cost }}" id="input-cost" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="input-geo-zone">{{ entry_geo_zone }}</label>
+          <select name="shipping_addressdelivery_geo_zone_id" id="input-geo-zone" class="form-control">
+            {% for geo_zone in geo_zones %}
+              <option value="{{ geo_zone.geo_zone_id }}" {{ geo_zone.geo_zone_id == shipping_addressdelivery_geo_zone_id ? 'selected' }}>{{ geo_zone.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="input-sort-order">{{ entry_sort_order }}</label>
+          <input type="text" name="shipping_addressdelivery_sort_order" value="{{ shipping_addressdelivery_sort_order }}" id="input-sort-order" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Сохранить</button>
+        <a href="{{ cancel }}" class="btn btn-default"><i class="fa fa-reply"></i> Отмена</a>
+      </form>
+    </div>
+  </div>
+</div>
+{{ footer }}
 
